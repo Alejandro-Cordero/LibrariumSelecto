@@ -1,0 +1,168 @@
+﻿@using SocialNetwork.Mvc.Extensions
+@using SocialNetwork.Mvc.Utils
+@using SocialNetwork.Core.Models
+@model User
+
+@{
+    User usuario = Context.Session.GetObject<User>("UsuarioEnSession");
+}
+
+@{
+    ViewData["Title"] = "Editar Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container p-4">
+    <h1>Editar Usuario</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit" method="POST">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Login" class="control-label">Usuario</label>
+                    <input asp-for="Login" class="form-control" />
+                    <span asp-validation-for="Login" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="Id" class="form-control" />
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label">Contraseña</label>
+                    <input asp-for="Password" type="password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FirstName" class="control-label">Nombre</label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label">Apellidos</label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Phone" class="control-label">Teléfono</label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Birthdate" class="control-label">Fecha de nacimiento</label>
+                    <input asp-for="Birthdate" class="form-control" />
+                    <span asp-validation-for="Birthdate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label">Correo Electrónico</label>
+                    <input asp-for="Email" type="email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TypeGenderId" class="control-label">Género</label>
+                    <select class="form-select form-select-md mt-1" asp-for="TypeGenderId" asp-items="Html.GetEnumSelectList<TypeGenderId>()">
+                        <option selected="selected" value="1">Por favor selecciona</option>
+                    </select>
+                    <span asp-validation-for="TypeGenderId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Guardar" class="btn btn-primary mt-3" />
+                    <a href="/Users/Details" style="text-decoration:none" class="text-blue ml-4"><button type="button" class="btn btn-secondary mt-3 ml-4">Volver</button></a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+@* @using SocialNetwork.Mvc.Extensions
+@using SocialNetwork.Core.Models
+@using SocialNetwork.Mvc.Utils
+@model User
+
+
+@{
+    User usuario = Context.Session.GetObject<User>("UsuarioEnSession");
+}
+@{
+    ViewData["Title"] = "Edit User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container p-4">
+
+
+<h1>Edit</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="POST">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Login" class="control-label">Usuario</label>
+                    <input asp-for="Login" class="form-control" />
+                    <span asp-validation-for="Login" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="Id" class="form-control" />
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                </div>
+            <div class="form-group">
+                    <label asp-for="Password" class="control-label">Contraseña</label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label">Nombre</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label">Apellidos</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label">Teléfono</label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Birthdate" class="control-label">Fecha de Cumpleaños</label>
+                <input asp-for="Birthdate" class="form-control" />
+                <span asp-validation-for="Birthdate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">Correo Electrónico</label>
+                <input asp-for="Email" type="email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TypeGenderId" class="control-label">Género</label>
+                <select asp-for="TypeGenderId" asp-items="Html.GetEnumSelectList<TypeGenderId>()"></select>
+                <span asp-validation-for="TypeGenderId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary mt-3" />
+                    <a href="/Users/Details" style="text-decoration:none" class="text-blue ml-4"><button type="button" class="btn btn-secondary mt-3 ml-4">Volver</button></a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+       
+</div>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+ *@

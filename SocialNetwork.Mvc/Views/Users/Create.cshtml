@@ -1,0 +1,72 @@
+﻿@using SocialNetwork.Mvc.Utils
+@using SocialNetwork.Core.Models
+@model User
+
+@{
+    ViewData["Title"] = "Registrar Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container p-4">
+    <h1>Registra un nuevo usuario</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Login" class="control-label">Usuario</label>
+                    <input asp-for="Login" class="form-control" />
+                    <span asp-validation-for="Login" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label">Contraseña</label>
+                    <input asp-for="Password" type="password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FirstName" class="control-label">Nombre</label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label">Apellido</label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Phone" class="control-label">Teléfono</label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Birthdate" class="control-label">Fecha de Nacimiento</label>
+                    <input asp-for="Birthdate" class="form-control" />
+                    <span asp-validation-for="Birthdate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label">Correo Electrónico</label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                     <label asp-for="TypeGenderId" class="control-label">Género</label>
+                     <select class="form-select form-select-md mb-2"asp-for="TypeGenderId" asp-items="Html.GetEnumSelectList<TypeGenderId>()"></select>
+                    <span asp-validation-for="TypeGenderId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Registrar" class="btn btn-primary mt-2" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <br />
+    <div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

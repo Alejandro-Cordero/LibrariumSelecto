@@ -1,0 +1,170 @@
+﻿@using SocialNetwork.Mvc.Extensions
+@using SocialNetwork.Mvc.Utils
+@using SocialNetwork.Core.Models
+@model User
+@{
+    User usuario = Context.Session.GetObject<User>("UsuarioEnSession");
+}
+
+<h1>Datos Personales</h1>
+
+<div class="container">
+    <hr />
+    <dl class="row">
+        <dt class="col-md-2">Usuario:</dt>
+        <dd class="col-md-10">@usuario.Login</dd>
+
+        <dt class="col-md-2">Contraseña:</dt>
+        <dd class="col-md-10">
+            <div class="input-group">
+                <input id="passwordField" type="password" class="form-control" value="@usuario.Password" disabled />
+                <div class="input-group-append">
+                    <button id="togglePassword" type="button" class="btn btn-outline-secondary" onclick="togglePassword()">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+        </dd>
+
+        <dt class="col-md-2">Nombre:</dt>
+        <dd class="col-md-10">@usuario.FirstName</dd>
+
+        <dt class="col-md-2">Apellidos:</dt>
+        <dd class="col-md-10">@usuario.LastName</dd>
+
+        <dt class="col-md-2">Teléfono:</dt>
+        <dd class="col-md-10">@usuario.Phone</dd>
+
+        <dt class="col-md-2">Cumpleaños:</dt>
+        <dd class="col-md-10">@usuario.Birthdate</dd>
+
+        <dt class="col-md-2">Correo Electrónico:</dt>
+        <dd class="col-md-10">@usuario.Email</dd>
+
+        <dt class="col-md-2">Género:</dt>
+        <dd class="col-md-10">
+            @{
+                string typeGenderDescription;
+
+                switch (usuario.TypeGenderId)
+                {
+                    case (int)TypeGenderId.Male:
+                        typeGenderDescription = "Hombre";
+                        break;
+                    case (int)TypeGenderId.Female:
+                        typeGenderDescription = "Mujer";
+                        break;
+                    case (int)TypeGenderId.Other:
+                        typeGenderDescription = "Otro";
+                        break;
+                    default:
+                        typeGenderDescription = "Desconocido";
+                        break;
+                }
+            }
+            @typeGenderDescription
+        </dd>
+    </dl>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 mt-2">
+            <a href="./Edit"><button type="submit" class="btn btn-dark btn-sm w-100">Editar datos</button></a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById("passwordField");
+            var toggleButton = document.getElementById("togglePassword");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleButton.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            } else {
+                passwordField.type = "password";
+                toggleButton.innerHTML = '<i class="fas fa-eye"></i>';
+            }
+        }
+    </script>
+}
+
+@* <div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Usuario:
+        </dt>
+        <dd class="col-sm-10">
+            @usuario.Login
+        </dd>
+        <dt class="col-sm-2">
+            Contraseña:
+        </dt>
+        <dd class="col-sm-10">
+            @usuario.Password
+        </dd>
+        <dt class="col-sm-2">
+            Nombre:
+        </dt>
+        <dd class="col-sm-10">
+            @usuario.FirstName
+        </dd>
+        <dt class="col-sm-2">
+            Apellidos:
+        </dt>
+        <dd class="col-sm-10">
+            @usuario.LastName
+        </dd>
+        <dt class="col-sm-2">
+            Teléfono:
+        </dt>
+        <dd class="col-sm-10">
+            @usuario.Phone
+        </dd>
+        <dt class="col-sm-2">
+            Cumpleaños:
+        </dt>
+        <dd class="col-sm-10">
+            @usuario.Birthdate
+        </dd>
+        <dt class="col-sm-2">
+            Correo Electrónico:
+        </dt>
+        <dd class="col-sm-10">
+            @usuario.Email
+        </dd>
+        <dt class="col-sm-2">
+            Género:
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                string typeGenderDescription;
+
+                switch (usuario.TypeGenderId)
+                {
+                    case (int)TypeGenderId.Male:
+                        typeGenderDescription = "Hombre";
+                        break;
+                    case (int)TypeGenderId.Female:
+                        typeGenderDescription = "Mujer";
+                        break;
+                    case (int)TypeGenderId.Other:
+                        typeGenderDescription = "Otro";
+                        break;
+                    default:
+                        typeGenderDescription = "Desconocido";
+                        break;
+                }
+            }
+            @typeGenderDescription
+        </dd>
+    </dl>
+</div>
+<div>
+    <a href="/Users/Edit/@usuario.Id" style="text-decoration:none" class="text-white"><button type="button" class="btn btn-primary">Editar</button></a>
+    <a href="/Articles/Index" style="text-decoration:none" class="text-blue"><button type="button" class="btn btn-secondary ml-4">Volver</button></a>
+    
+</div> *@

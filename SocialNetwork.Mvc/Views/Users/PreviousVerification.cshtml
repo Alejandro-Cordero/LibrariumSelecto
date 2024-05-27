@@ -1,0 +1,46 @@
+﻿@*
+    Para obtener más información sobre cómo habilitar MVC para proyectos vacíos, visita https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+    ViewData["Title"] = "Verificación Previa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg p-4">
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-5">Verificación de Usuario</h1>
+
+                    @if (ViewData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @ViewData["ErrorMessage"]
+                        </div>
+                    }
+
+                    <form asp-action="PreviousVerification" method="post">
+                        <div class="mb-4">
+                            <label for="login" class="form-label">Nombre de Usuario:</label>
+                            <input type="text" class="form-control" id="login" name="User" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="form-label">Correo Electrónico:</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" name="action" value="confirm" class="btn btn-dark btn-md w-100">Confirmar</button>
+                            </div>
+                            <div class="col">
+                                <a href="/Users/Login" class="btn btn-outline-dark btn-md w-100">Cancelar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

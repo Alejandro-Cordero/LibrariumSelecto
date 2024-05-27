@@ -1,0 +1,100 @@
+﻿@using SocialNetwork.Mvc.Extensions;
+@using SocialNetwork.Mvc.Utils;
+@using SocialNetwork.Core.Models;
+@model ArticleViewModel
+
+@{
+    ViewData["Title"] = "Crear Articulo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    User usuario = Context.Session.GetObject<User>("UsuarioEnSession");
+}
+
+<div class="container p-4">
+    <h1 class="mb-4 text-black">Añade un artículo</h1>
+    <hr class="mb-1"/>
+    <div class="row justify-content-center">
+        <div class="col-md-20">
+            <form asp-action="Create" class="bg-white p-4 shadow-md rounded-md">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                <div class="form-group mb-3">
+                    <label asp-for="Title" class="form-label">Título</label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Content" class="form-label">Contenido</label>
+                    <textarea asp-for="Content" class="form-control" rows="4"></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-4">
+                    <label asp-for="TypeTopicId" class="form-label">Categoría</label>
+                    <select asp-for="TypeTopicId" asp-items="Html.GetEnumSelectList<TypeTopicId>()" class="form-control">
+                        <option value="">--Seleccione una categoría--</option>
+                    </select>
+                    <span asp-validation-for="TypeTopicId" class="text-danger"></span>
+                </div>
+                <div class="form-group d-flex justify-content-between">
+                    <button type="submit" class="btn btn-dark">Crear</button>
+                    <a href="/Articles/Index" class="btn btn-outline-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #fff;
+        color: #333;
+    }
+
+    .container {
+        max-width: 600px;
+    }
+
+    h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #000;
+    }
+
+    .form-label {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #000;
+    }
+
+    .form-control {
+        border: 1px solid #000;
+        border-radius: 0.25rem;
+        color: #333;
+        background-color: #fff;
+    }
+
+        .form-control:focus {
+            border-color: #000;
+            box-shadow: none;
+        }
+
+    .btn-dark {
+        background-color: #000;
+        color: #fff;
+        border: none;
+    }
+
+        .btn-dark:hover {
+            background-color: #333;
+        }
+
+    .btn-outline-secondary {
+        border-color: #000;
+        color: #000;
+    }
+
+        .btn-outline-secondary:hover {
+            background-color: #000;
+            color: #fff;
+        }
+</style>

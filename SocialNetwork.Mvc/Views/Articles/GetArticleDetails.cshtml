@@ -1,0 +1,225 @@
+﻿@using SocialNetwork.Mvc.Extensions;
+@model SocialNetwork.Mvc.Models.ViewModels.ArticleDetail
+
+@{
+    ViewData["Title"] = "Detalles del Artículo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    UserViewModel currentUser = Context.Session.GetObject<UserViewModel>("UsuarioEnSession");
+    var hasRecommended = Model.Recommendations.Any(r => r.UserId == currentUser?.Id);
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="article card p-6 mb-5">
+                <div class="article-info d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h4 class="text-xl font-bold">@Model.Article.Title</h4>
+                        <p class="text-muted">@Model.Article.CreationDate.ToString("dd MMM yyyy")</p>
+                        <p>Por <strong>@Model.User.Login</strong></p>
+                    </div>
+                    @if (currentUser != null && currentUser.Id == Model.Article.UserId)
+                    {
+                        <button id="editButton" class="btn btn-outline-secondary btn-sm"><i class="fas fa-pen"></i> Editar</button>
+                    }
+                </div>
+                <p>@Model.Article.Content</p>
+                @if (currentUser != null && currentUser.Id == Model.Article.UserId)
+                {
+                    <form id="editForm" asp-action="Update" asp-controller="Articles" asp-route-id="@Model.Article.Id" method="post" class="mt-4 hidden">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Título:</label>
+                            <input type="text" class="form-control" id="title" name="Title" value="@Model.Article.Title" required>
+                            <div class="invalid-feedback">Por favor ingrese un título.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="content" class="form-label">Contenido:</label>
+                            <textarea class="form-control" id="content" rows="4" name="Content" required>@Model.Article.Content</textarea>
+                            <div class="invalid-feedback">Por favor ingrese el contenido del artículo.</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </form>
+                }
+
+                @if (currentUser != null)
+                {
+                    @if (hasRecommended)
+                    {
+                        <form asp-controller="Recommendation" asp-action="Delete" method="post" class="mt-4">
+                            <input type="hidden" name="recommendationId" value="@Model.Recommendations.FirstOrDefault(r => r.UserId == currentUser.Id)?.Id" />
+                            <input type="hidden" name="articleId" value="@Model.Article.Id" />
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-thumbs-up"></i></button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form asp-controller="Recommendation" asp-action="Create" method="post" class="mt-4">
+                            <input type="hidden" name="articleId" value="@Model.Article.Id" />
+                            <button type="submit" class="btn btn-outline-primary"><i class="fas fa-thumbs-up"></i></button>
+                        </form>
+                    }
+                }
+            </div>
+
+            <div class="comment-section card shadow-sm p-6 mt-6">
+                @if (currentUser != null)
+                {
+                    <form asp-action="Create" asp-controller="Comments" asp-route-id="@Model.Article.Id" method="post" id="commentForm" class="mb-4">
+                        <div class="mb-3">
+                            <label for="commentTitle" class="form-label">Título:</label>
+                            <input type="text" class="form-control" id="commentTitle" name="Title" placeholder="Ingrese título" required>
+                            <div class="invalid-feedback">Por favor ingrese un título.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="rating" class="form-label">Calificación:</label>
+                            <input type="number" class="form-control" id="rating" name="Rating" min="1" max="5" placeholder="Ingrese calificación" required>
+                            <div class="invalid-feedback">Por favor ingrese una calificación entre 1 y 5.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Descripción:</label>
+                            <textarea class="form-control" id="description" rows="3" name="Description" placeholder="Ingrese descripción" required></textarea>
+                            <div class="invalid-feedback">Por favor ingrese una descripción.</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar Comentario</button>
+                    </form>
+                }
+                else
+                {
+                    <p class="mb-6 mt-3">Debes <a href="/Users/Login" class="text-primary">Iniciar Sesión</a> para dejar un comentario.</p>
+                }
+                <hr class="mb-3">
+                @foreach (var item in Model.Commentaries)
+                {
+                    <div class="comment mb-4">
+                        <div class="media">
+                            <div class="media-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="mt-0">@item.User.Login</h5>
+                                    @if (currentUser != null && currentUser.Id == item.UserId)
+                                    { 
+                                        <button class="btn btn-outline-secondary btn-sm" onclick="showEditForm(@item.Id)"><i class="fas fa-pen"></i> Editar</button>
+                                    }
+                                </div>
+                                <p class="text-muted mb-1">Calificación: @item.Rating</p>
+                                <p><strong>@item.Title</strong></p>
+                                <p>@item.Description</p>
+
+                                @if (currentUser != null && currentUser.Id == item.UserId)
+                                {
+                                    <form asp-action="Edit" asp-controller="Comments" asp-route-id="@item.Id" method="post" class="edit-comment-form mt-3 hidden" id="editForm-@item.Id">
+                                        <div class="mb-3">
+                                            <label for="editTitle-@item.Id" class="form-label">Título:</label>
+                                            <input type="text" class="form-control" id="editTitle-@item.Id" name="Title" value="@item.Title" required>
+                                            <div class="invalid-feedback">Por favor ingrese un título.</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editRating-@item.Id" class="form-label">Calificación:</label>
+                                            <input type="number" class="form-control" id="editRating-@item.Id" name="Rating" min="1" max="5" value="@item.Rating" required>
+                                            <div class="invalid-feedback">Por favor ingrese una calificación entre 1 y 5.</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editDescription-@item.Id" class="form-label">Descripción:</label>
+                                            <textarea class="form-control" id="editDescription-@item.Id" rows="3" name="Description" required>@item.Description</textarea>
+                                            <div class="invalid-feedback">Por favor ingrese una descripción.</div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                    </form>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .article {
+        margin-bottom: 30px;
+        border: 1px solid #ddd;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    }
+
+    .comment-section {
+        margin-top: 30px;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    }
+
+    .comment {
+        margin-bottom: 20px;
+    }
+
+    .media-body {
+        background-color: #f9f9f9;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    .btn-outline-secondary {
+        border-color: #ddd;
+        color: #555;
+    }
+
+        .btn-outline-secondary:hover {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+    .btn-outline-primary {
+        border-color: #000;
+        color: #000;
+    }
+
+        .btn-outline-primary:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+    .btn-primary {
+        background-color: #000;
+        border-color: #000;
+    }
+
+        .btn-primary:hover {
+            background-color: #333;
+            border-color: #333;
+        }
+</style>
+
+<script>
+    (function () {
+        'use strict';
+
+        var form = document.getElementById('commentForm');
+        if (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        }
+
+        var editButton = document.getElementById('editButton');
+        var editForm = document.getElementById('editForm');
+
+        if (editButton) {
+            editButton.addEventListener('click', function () {
+                editForm.classList.toggle('hidden');
+            });
+        }
+
+        window.showEditForm = function (id) {
+            var form = document.getElementById('editForm-' + id);
+            form.classList.toggle('hidden');
+        };
+    })();
+</script>
