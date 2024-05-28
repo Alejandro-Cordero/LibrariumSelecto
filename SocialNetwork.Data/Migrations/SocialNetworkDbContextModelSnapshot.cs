@@ -62,7 +62,7 @@ namespace SocialNetwork.Data.Migrations
                         {
                             Id = 1,
                             Content = "Este es el contenido del primer artículo del Usuario 1",
-                            CreationDate = new DateTime(2024, 5, 8, 15, 56, 32, 878, DateTimeKind.Local).AddTicks(5611),
+                            CreationDate = new DateTime(2024, 5, 28, 18, 36, 10, 233, DateTimeKind.Local).AddTicks(4189),
                             Title = "Titulo del primer artículo del Usuario 1",
                             TypeTopicId = 1,
                             UserId = 1
@@ -71,7 +71,7 @@ namespace SocialNetwork.Data.Migrations
                         {
                             Id = 2,
                             Content = "Este es el contenido del primer artículo del Usuario 2",
-                            CreationDate = new DateTime(2024, 5, 8, 15, 56, 32, 878, DateTimeKind.Local).AddTicks(5649),
+                            CreationDate = new DateTime(2024, 5, 28, 18, 36, 10, 233, DateTimeKind.Local).AddTicks(4223),
                             Title = "Titulo del primer artículo del Usuario 2",
                             TypeTopicId = 2,
                             UserId = 2
@@ -80,7 +80,7 @@ namespace SocialNetwork.Data.Migrations
                         {
                             Id = 3,
                             Content = "Este es el contenido del primer artículo del Usuario 3",
-                            CreationDate = new DateTime(2024, 5, 8, 15, 56, 32, 878, DateTimeKind.Local).AddTicks(5651),
+                            CreationDate = new DateTime(2024, 5, 28, 18, 36, 10, 233, DateTimeKind.Local).AddTicks(4226),
                             Title = "Titulo del primer artículo del Usuario 3",
                             TypeTopicId = 3,
                             UserId = 3
@@ -89,7 +89,7 @@ namespace SocialNetwork.Data.Migrations
                         {
                             Id = 4,
                             Content = "Este es el contenido del primer artículo del Usuario 6",
-                            CreationDate = new DateTime(2024, 5, 8, 15, 56, 32, 878, DateTimeKind.Local).AddTicks(5652),
+                            CreationDate = new DateTime(2024, 5, 28, 18, 36, 10, 233, DateTimeKind.Local).AddTicks(4228),
                             Title = "Titulo del primer artículo del Usuario 6",
                             TypeTopicId = 4,
                             UserId = 6
@@ -98,7 +98,7 @@ namespace SocialNetwork.Data.Migrations
                         {
                             Id = 5,
                             Content = "Este es el contenido del segundo artículo del Usuario 6",
-                            CreationDate = new DateTime(2024, 5, 8, 15, 56, 32, 878, DateTimeKind.Local).AddTicks(5654),
+                            CreationDate = new DateTime(2024, 5, 28, 18, 36, 10, 233, DateTimeKind.Local).AddTicks(4231),
                             Title = "Titulo del segundo artículo del Usuario 6",
                             TypeTopicId = 5,
                             UserId = 6
@@ -107,7 +107,7 @@ namespace SocialNetwork.Data.Migrations
                         {
                             Id = 6,
                             Content = "Este es el contenido del primer artículo del Usuario 8",
-                            CreationDate = new DateTime(2024, 5, 8, 15, 56, 32, 878, DateTimeKind.Local).AddTicks(5655),
+                            CreationDate = new DateTime(2024, 5, 28, 18, 36, 10, 233, DateTimeKind.Local).AddTicks(4234),
                             Title = "Titulo del primer artículo del Usuario 8",
                             TypeTopicId = 3,
                             UserId = 8
@@ -157,7 +157,7 @@ namespace SocialNetwork.Data.Migrations
                         {
                             Id = 1,
                             ArticleId = 1,
-                            Date = new DateTime(2024, 5, 8, 15, 56, 32, 878, DateTimeKind.Local).AddTicks(5683),
+                            Date = new DateTime(2024, 5, 28, 18, 36, 10, 233, DateTimeKind.Local).AddTicks(4292),
                             Description = "Descripcion de comentario en articulo 1 de usuario 4",
                             Rating = 4,
                             Title = "Titulo de comentario en articulo 1 de usuario 4",
@@ -167,7 +167,7 @@ namespace SocialNetwork.Data.Migrations
                         {
                             Id = 2,
                             ArticleId = 2,
-                            Date = new DateTime(2024, 5, 8, 15, 56, 32, 878, DateTimeKind.Local).AddTicks(5685),
+                            Date = new DateTime(2024, 5, 28, 18, 36, 10, 233, DateTimeKind.Local).AddTicks(4296),
                             Description = "Descripcion de comentario en articulo 2 de usuario 3",
                             Rating = 2,
                             Title = "Titulo de comentario en articulo 2 de usuario 3",
@@ -177,7 +177,7 @@ namespace SocialNetwork.Data.Migrations
                         {
                             Id = 3,
                             ArticleId = 2,
-                            Date = new DateTime(2024, 5, 8, 15, 56, 32, 878, DateTimeKind.Local).AddTicks(5687),
+                            Date = new DateTime(2024, 5, 28, 18, 36, 10, 233, DateTimeKind.Local).AddTicks(4299),
                             Description = "Descripcion de comentario en articulo 2 de usuario 6",
                             Rating = 5,
                             Title = "Titulo de comentario en articulo 2 de usuario 6",
@@ -187,7 +187,7 @@ namespace SocialNetwork.Data.Migrations
                         {
                             Id = 4,
                             ArticleId = 4,
-                            Date = new DateTime(2024, 5, 8, 15, 56, 32, 878, DateTimeKind.Local).AddTicks(5688),
+                            Date = new DateTime(2024, 5, 28, 18, 36, 10, 233, DateTimeKind.Local).AddTicks(4302),
                             Description = "Descripcion de comentario en articulo  4 de usuario 1",
                             Rating = 5,
                             Title = "Titulo de comentario en articulo 4 de usuario 1",
@@ -197,7 +197,7 @@ namespace SocialNetwork.Data.Migrations
                         {
                             Id = 5,
                             ArticleId = 6,
-                            Date = new DateTime(2024, 5, 8, 15, 56, 32, 878, DateTimeKind.Local).AddTicks(5690),
+                            Date = new DateTime(2024, 5, 28, 18, 36, 10, 233, DateTimeKind.Local).AddTicks(4305),
                             Description = "Descripcion de comentario en articulo 6 de usuario 10",
                             Rating = 2,
                             Title = "Titulo de comentario en articulo 6 de usuario 10",
@@ -207,7 +207,7 @@ namespace SocialNetwork.Data.Migrations
                         {
                             Id = 6,
                             ArticleId = 6,
-                            Date = new DateTime(2024, 5, 8, 15, 56, 32, 878, DateTimeKind.Local).AddTicks(5691),
+                            Date = new DateTime(2024, 5, 28, 18, 36, 10, 233, DateTimeKind.Local).AddTicks(4307),
                             Description = "Descripcion de comentario en articulo 6 de usuario 7",
                             Rating = 1,
                             Title = "Titulo de comentario en articulo 6 de usuario 7",
@@ -245,63 +245,63 @@ namespace SocialNetwork.Data.Migrations
                         {
                             Id = 1,
                             ArticleId = 2,
-                            Date = new DateTime(2024, 5, 8, 15, 56, 32, 878, DateTimeKind.Local).AddTicks(5718),
+                            Date = new DateTime(2024, 5, 28, 18, 36, 10, 233, DateTimeKind.Local).AddTicks(4363),
                             UserId = 2
                         },
                         new
                         {
                             Id = 2,
                             ArticleId = 4,
-                            Date = new DateTime(2024, 5, 8, 15, 56, 32, 878, DateTimeKind.Local).AddTicks(5720),
+                            Date = new DateTime(2024, 5, 28, 18, 36, 10, 233, DateTimeKind.Local).AddTicks(4367),
                             UserId = 4
                         },
                         new
                         {
                             Id = 3,
                             ArticleId = 2,
-                            Date = new DateTime(2024, 5, 8, 15, 56, 32, 878, DateTimeKind.Local).AddTicks(5721),
+                            Date = new DateTime(2024, 5, 28, 18, 36, 10, 233, DateTimeKind.Local).AddTicks(4370),
                             UserId = 7
                         },
                         new
                         {
                             Id = 4,
                             ArticleId = 6,
-                            Date = new DateTime(2024, 5, 8, 15, 56, 32, 878, DateTimeKind.Local).AddTicks(5723),
+                            Date = new DateTime(2024, 5, 28, 18, 36, 10, 233, DateTimeKind.Local).AddTicks(4372),
                             UserId = 8
                         },
                         new
                         {
                             Id = 5,
                             ArticleId = 1,
-                            Date = new DateTime(2024, 5, 8, 15, 56, 32, 878, DateTimeKind.Local).AddTicks(5724),
+                            Date = new DateTime(2024, 5, 28, 18, 36, 10, 233, DateTimeKind.Local).AddTicks(4375),
                             UserId = 9
                         },
                         new
                         {
                             Id = 6,
                             ArticleId = 2,
-                            Date = new DateTime(2024, 5, 8, 15, 56, 32, 878, DateTimeKind.Local).AddTicks(5725),
+                            Date = new DateTime(2024, 5, 28, 18, 36, 10, 233, DateTimeKind.Local).AddTicks(4377),
                             UserId = 2
                         },
                         new
                         {
                             Id = 7,
                             ArticleId = 4,
-                            Date = new DateTime(2024, 5, 8, 15, 56, 32, 878, DateTimeKind.Local).AddTicks(5727),
+                            Date = new DateTime(2024, 5, 28, 18, 36, 10, 233, DateTimeKind.Local).AddTicks(4380),
                             UserId = 10
                         },
                         new
                         {
                             Id = 8,
                             ArticleId = 4,
-                            Date = new DateTime(2024, 5, 8, 15, 56, 32, 878, DateTimeKind.Local).AddTicks(5728),
+                            Date = new DateTime(2024, 5, 28, 18, 36, 10, 233, DateTimeKind.Local).AddTicks(4382),
                             UserId = 3
                         },
                         new
                         {
                             Id = 9,
                             ArticleId = 2,
-                            Date = new DateTime(2024, 5, 8, 15, 56, 32, 878, DateTimeKind.Local).AddTicks(5729),
+                            Date = new DateTime(2024, 5, 28, 18, 36, 10, 233, DateTimeKind.Local).AddTicks(4385),
                             UserId = 5
                         });
                 });
