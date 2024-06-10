@@ -12,14 +12,11 @@ namespace SocialNetwork.Mvc.Controllers
         {
             _socialNetworkDbContext = socialNetworkDbContext;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
 
+        [HttpPost]
         public async Task<IActionResult> Create(Recommendation model, int articleId)
         {
-            if(HttpContext.Session.GetObject<User>("UsuarioEnSession") != null)
+            if (HttpContext.Session.GetObject<User>("UsuarioEnSession") != null)
             {
                 model.Id = 0;
                 model.Date = DateTime.Now;
@@ -28,26 +25,27 @@ namespace SocialNetwork.Mvc.Controllers
 
                 _socialNetworkDbContext.Recommendations.Add(model);
                 await _socialNetworkDbContext.SaveChangesAsync();
-                
-                return RedirectToAction("GetArticleDetails", "Articles", new { id = articleId });
+
+                return Json(new { success = true, recommendationId = model.Id });
             }
 
-            return RedirectToAction("Login", "Users");
+            return Json(new { success = false });
         }
 
-        public async Task<IActionResult> Delete(int recommendationId, int articleId)
+        [HttpPost]
+        public async Task<IActionResult> Delete(int recommendationId)
         {
             var recommendation = _socialNetworkDbContext.Recommendations.Find(recommendationId);
 
-            if(recommendation != null)
+            if (recommendation != null)
             {
                 _socialNetworkDbContext.Recommendations.Remove(recommendation);
                 await _socialNetworkDbContext.SaveChangesAsync();
 
-                return RedirectToAction("GetArticleDetails", "Articles", new { id = articleId });
+                return Json(new { success = true });
             }
 
-            return RedirectToAction("Index", "Articles");
+            return Json(new { success = false });
         }
     }
 }

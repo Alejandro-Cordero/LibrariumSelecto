@@ -12,157 +12,94 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container p-4">
-    <h1>Editar Usuario</h1>
-    <hr />
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Edit" method="POST">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Login" class="control-label">Usuario</label>
-                    <input asp-for="Login" class="form-control" />
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-2xl">
+        <h1 class="text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">Editar Usuario</h1>
+    </div>
+
+    <div class="sm:mx-auto sm:w-full sm:max-w-2xl mt-6">
+        <div class="bg-white py-8 px-6 shadow rounded-lg sm:px-10">
+            <form asp-action="Edit" method="POST" class="space-y-6">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                <div>
+                    <label asp-for="Login" class="block text-sm font-medium leading-6 text-gray-900">Usuario</label>
+                    <input asp-for="Login" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
                     <span asp-validation-for="Login" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                <div>
                     <input type="hidden" asp-for="Id" class="form-control" />
                     <span asp-validation-for="Id" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Password" class="control-label">Contraseña</label>
-                    <input asp-for="Password" type="password" class="form-control" />
+                <div>
+                    <label asp-for="Password" class="block text-sm font-medium leading-6 text-gray-900">Contraseña</label>
+                    <input asp-for="Password" type="password" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="FirstName" class="control-label">Nombre</label>
-                    <input asp-for="FirstName" class="form-control" />
+                <div>
+                    <label asp-for="FirstName" class="block text-sm font-medium leading-6 text-gray-900">Nombre</label>
+                    <input asp-for="FirstName" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
                     <span asp-validation-for="FirstName" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="LastName" class="control-label">Apellidos</label>
-                    <input asp-for="LastName" class="form-control" />
+                <div>
+                    <label asp-for="LastName" class="block text-sm font-medium leading-6 text-gray-900">Apellidos</label>
+                    <input asp-for="LastName" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
                     <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Phone" class="control-label">Teléfono</label>
-                    <input asp-for="Phone" class="form-control" />
+                <div>
+                    <label asp-for="Phone" class="block text-sm font-medium leading-6 text-gray-900">Teléfono</label>
+                    <input asp-for="Phone" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
                     <span asp-validation-for="Phone" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Birthdate" class="control-label">Fecha de nacimiento</label>
-                    <input asp-for="Birthdate" class="form-control" />
+                <div>
+                    <label asp-for="Birthdate" class="block text-sm font-medium leading-6 text-gray-900">Fecha de nacimiento</label>
+                    <input asp-for="Birthdate" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
                     <span asp-validation-for="Birthdate" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Email" class="control-label">Correo Electrónico</label>
-                    <input asp-for="Email" type="email" class="form-control" />
+                <div>
+                    <label asp-for="Email" class="block text-sm font-medium leading-6 text-gray-900">Correo Electrónico</label>
+                    <input asp-for="Email" type="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="TypeGenderId" class="control-label">Género</label>
-                    <select class="form-select form-select-md mt-1" asp-for="TypeGenderId" asp-items="Html.GetEnumSelectList<TypeGenderId>()">
+                <div>
+                    <label asp-for="TypeGenderId" class="block text-sm font-medium leading-6 text-gray-900">Género</label>
+                    <select asp-for="TypeGenderId" asp-items="Html.GetEnumSelectList<TypeGenderId>()" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
                         <option selected="selected" value="1">Por favor selecciona</option>
                     </select>
                     <span asp-validation-for="TypeGenderId" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <input type="submit" value="Guardar" class="btn btn-primary mt-3" />
-                    <a href="/Users/Details" style="text-decoration:none" class="text-blue ml-4"><button type="button" class="btn btn-secondary mt-3 ml-4">Volver</button></a>
+                <div class="flex justify-end space-x-4">
+                    <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black">Guardar</button>
+                    <a href="/Users/Details" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Volver</a>
                 </div>
             </form>
         </div>
     </div>
-    <div>
-    </div>
 </div>
+
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+    }
+
+    .form-select {
+        display: block;
+        width: 100%;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        line-height: 1.25;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        appearance: none;
+    }
+</style>
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
-@* @using SocialNetwork.Mvc.Extensions
-@using SocialNetwork.Core.Models
-@using SocialNetwork.Mvc.Utils
-@model User
-
-
-@{
-    User usuario = Context.Session.GetObject<User>("UsuarioEnSession");
-}
-@{
-    ViewData["Title"] = "Edit User";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-<div class="container p-4">
-
-
-<h1>Edit</h1>
-
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit" method="POST">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Login" class="control-label">Usuario</label>
-                    <input asp-for="Login" class="form-control" />
-                    <span asp-validation-for="Login" class="text-danger"></span>
-            </div>
-                <div class="form-group">
-                    <input type="hidden" asp-for="Id" class="form-control" />
-                    <span asp-validation-for="Id" class="text-danger"></span>
-                </div>
-            <div class="form-group">
-                    <label asp-for="Password" class="control-label">Contraseña</label>
-                    <input asp-for="Password" class="form-control" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label">Nombre</label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label">Apellidos</label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Phone" class="control-label">Teléfono</label>
-                <input asp-for="Phone" class="form-control" />
-                <span asp-validation-for="Phone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Birthdate" class="control-label">Fecha de Cumpleaños</label>
-                <input asp-for="Birthdate" class="form-control" />
-                <span asp-validation-for="Birthdate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label">Correo Electrónico</label>
-                <input asp-for="Email" type="email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TypeGenderId" class="control-label">Género</label>
-                <select asp-for="TypeGenderId" asp-items="Html.GetEnumSelectList<TypeGenderId>()"></select>
-                <span asp-validation-for="TypeGenderId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary mt-3" />
-                    <a href="/Users/Details" style="text-decoration:none" class="text-blue ml-4"><button type="button" class="btn btn-secondary mt-3 ml-4">Volver</button></a>
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-       
-</div>
-
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
- *@

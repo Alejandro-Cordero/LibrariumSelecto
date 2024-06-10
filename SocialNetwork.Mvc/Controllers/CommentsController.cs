@@ -12,11 +12,13 @@ namespace SocialNetwork.Mvc.Controllers
         {
             _socialNetworkDbContext = socialNetworkDbContext;
         }
+
         public IActionResult Index()
         {
             return View();
         }
 
+        [HttpPost]
         public async Task<IActionResult> Create(Commentary model, int id)
         {
             if (HttpContext.Session.GetObject<User>("UsuarioEnSession") != null)
@@ -28,11 +30,13 @@ namespace SocialNetwork.Mvc.Controllers
 
                 _socialNetworkDbContext.Commentaries.Add(model);
                 await _socialNetworkDbContext.SaveChangesAsync();
-                return RedirectToAction("Index", "Articles");
+
+                return Json(new { success = true });
             }
 
-            return RedirectToAction("Login", "Users");
+            return Json(new { success = false, redirectUrl = Url.Action("Login", "Users") });
         }
+
         public async Task<IActionResult> Edit(int id)
         {
             var commentary = await _socialNetworkDbContext.Commentaries.FindAsync(id);
@@ -46,8 +50,9 @@ namespace SocialNetwork.Mvc.Controllers
                 return Forbid();
             }
 
-            return View(commentary);
+            return PartialView("_EditComment", commentary); // Vista parcial para edición
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Commentary model)
@@ -59,7 +64,7 @@ namespace SocialNetwork.Mvc.Controllers
 
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return Json(new { success = false });
             }
 
             var commentary = await _socialNetworkDbContext.Commentaries.FindAsync(id);
@@ -81,9 +86,7 @@ namespace SocialNetwork.Mvc.Controllers
             _socialNetworkDbContext.Commentaries.Update(commentary);
             await _socialNetworkDbContext.SaveChangesAsync();
 
-            return RedirectToAction("Index", "Articles");
+            return Json(new { success = true });
         }
-
     }
-
 }

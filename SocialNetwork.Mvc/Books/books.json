@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Cien años de soledad",
+    "author": "Gabriel García Márquez",
+    "genre": "Ficción",
+    "publicationDate": "1967-05-30",
+    "description": "Una obra maestra de la literatura mundial.",
+    "purchaseLink": "http://example.com/cien-anos-de-soledad"
+  },
+  {
+    "id": 2,
+    "title": "Don Quijote de la Mancha",
+    "author": "Miguel de Cervantes",
+    "genre": "Ficción",
+    "publicationDate": "1605-01-16",
+    "description": "Una de las novelas más importantes de todos los tiempos.",
+    "purchaseLink": "http://example.com/don-quijote"
+  }
+]

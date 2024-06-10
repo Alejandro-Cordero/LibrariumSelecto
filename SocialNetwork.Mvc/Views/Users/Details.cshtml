@@ -6,73 +6,92 @@
     User usuario = Context.Session.GetObject<User>("UsuarioEnSession");
 }
 
-<h1>Datos Personales</h1>
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-2xl">
+        <h1 class="text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">Datos Personales</h1>
+    </div>
 
-<div class="container">
-    <hr />
-    <dl class="row">
-        <dt class="col-md-2">Usuario:</dt>
-        <dd class="col-md-10">@usuario.Login</dd>
-
-        <dt class="col-md-2">Contraseña:</dt>
-        <dd class="col-md-10">
-            <div class="input-group">
-                <input id="passwordField" type="password" class="form-control" value="@usuario.Password" disabled />
-                <div class="input-group-append">
-                    <button id="togglePassword" type="button" class="btn btn-outline-secondary" onclick="togglePassword()">
-                        <i class="fas fa-eye"></i>
-                    </button>
+    <div class="sm:mx-auto sm:w-full sm:max-w-2xl mt-6">
+        <div class="bg-white py-8 px-6 shadow rounded-lg sm:px-10">
+            <hr class="my-4" />
+            <dl class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <dt class="text-sm font-medium text-gray-900">Usuario:</dt>
+                    <dd class="mt-1 text-sm text-gray-700">@usuario.Login</dd>
                 </div>
+                <div>
+                    <dt class="text-sm font-medium text-gray-900">Contraseña:</dt>
+                    <dd class="mt-1 text-sm text-gray-700">
+                        <div class="flex items-center">
+                            <input id="passwordField" type="password" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" value="@usuario.Password" disabled />
+                            <button id="togglePassword" type="button" class="ml-2 text-gray-500 hover:text-gray-700" onclick="togglePassword()">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </dd>
+                </div>
+                <div>
+                    <dt class="text-sm font-medium text-gray-900">Nombre:</dt>
+                    <dd class="mt-1 text-sm text-gray-700">@usuario.FirstName</dd>
+                </div>
+                <div>
+                    <dt class="text-sm font-medium text-gray-900">Apellidos:</dt>
+                    <dd class="mt-1 text-sm text-gray-700">@usuario.LastName</dd>
+                </div>
+                <div>
+                    <dt class="text-sm font-medium text-gray-900">Teléfono:</dt>
+                    <dd class="mt-1 text-sm text-gray-700">@usuario.Phone</dd>
+                </div>
+                <div>
+                    <dt class="text-sm font-medium text-gray-900">Cumpleaños:</dt>
+                    <dd class="mt-1 text-sm text-gray-700">@usuario.Birthdate</dd>
+                </div>
+                <div>
+                    <dt class="text-sm font-medium text-gray-900">Correo Electrónico:</dt>
+                    <dd class="mt-1 text-sm text-gray-700">@usuario.Email</dd>
+                </div>
+                <div>
+                    <dt class="text-sm font-medium text-gray-900">Género:</dt>
+                    <dd class="mt-1 text-sm text-gray-700">
+                        @{
+                            string typeGenderDescription;
+
+                            switch (usuario.TypeGenderId)
+                            {
+                                case (int)TypeGenderId.Male:
+                                    typeGenderDescription = "Hombre";
+                                    break;
+                                case (int)TypeGenderId.Female:
+                                    typeGenderDescription = "Mujer";
+                                    break;
+                                case (int)TypeGenderId.Other:
+                                    typeGenderDescription = "Otro";
+                                    break;
+                                default:
+                                    typeGenderDescription = "Desconocido";
+                                    break;
+                            }
+                        }
+                        @typeGenderDescription
+                    </dd>
+                </div>
+            </dl>
+            <div class="mt-6 flex justify-end">
+                <a href="./Edit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black">
+                    Editar datos
+                </a>
             </div>
-        </dd>
-
-        <dt class="col-md-2">Nombre:</dt>
-        <dd class="col-md-10">@usuario.FirstName</dd>
-
-        <dt class="col-md-2">Apellidos:</dt>
-        <dd class="col-md-10">@usuario.LastName</dd>
-
-        <dt class="col-md-2">Teléfono:</dt>
-        <dd class="col-md-10">@usuario.Phone</dd>
-
-        <dt class="col-md-2">Cumpleaños:</dt>
-        <dd class="col-md-10">@usuario.Birthdate</dd>
-
-        <dt class="col-md-2">Correo Electrónico:</dt>
-        <dd class="col-md-10">@usuario.Email</dd>
-
-        <dt class="col-md-2">Género:</dt>
-        <dd class="col-md-10">
-            @{
-                string typeGenderDescription;
-
-                switch (usuario.TypeGenderId)
-                {
-                    case (int)TypeGenderId.Male:
-                        typeGenderDescription = "Hombre";
-                        break;
-                    case (int)TypeGenderId.Female:
-                        typeGenderDescription = "Mujer";
-                        break;
-                    case (int)TypeGenderId.Other:
-                        typeGenderDescription = "Otro";
-                        break;
-                    default:
-                        typeGenderDescription = "Desconocido";
-                        break;
-                }
-            }
-            @typeGenderDescription
-        </dd>
-    </dl>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-2 mt-2">
-            <a href="./Edit"><button type="submit" class="btn btn-dark btn-sm w-100">Editar datos</button></a>
         </div>
     </div>
 </div>
+
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+    }
+</style>
 
 @section Scripts {
     <script>
@@ -90,81 +109,3 @@
         }
     </script>
 }
-
-@* <div>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            Usuario:
-        </dt>
-        <dd class="col-sm-10">
-            @usuario.Login
-        </dd>
-        <dt class="col-sm-2">
-            Contraseña:
-        </dt>
-        <dd class="col-sm-10">
-            @usuario.Password
-        </dd>
-        <dt class="col-sm-2">
-            Nombre:
-        </dt>
-        <dd class="col-sm-10">
-            @usuario.FirstName
-        </dd>
-        <dt class="col-sm-2">
-            Apellidos:
-        </dt>
-        <dd class="col-sm-10">
-            @usuario.LastName
-        </dd>
-        <dt class="col-sm-2">
-            Teléfono:
-        </dt>
-        <dd class="col-sm-10">
-            @usuario.Phone
-        </dd>
-        <dt class="col-sm-2">
-            Cumpleaños:
-        </dt>
-        <dd class="col-sm-10">
-            @usuario.Birthdate
-        </dd>
-        <dt class="col-sm-2">
-            Correo Electrónico:
-        </dt>
-        <dd class="col-sm-10">
-            @usuario.Email
-        </dd>
-        <dt class="col-sm-2">
-            Género:
-        </dt>
-        <dd class="col-sm-10">
-            @{
-                string typeGenderDescription;
-
-                switch (usuario.TypeGenderId)
-                {
-                    case (int)TypeGenderId.Male:
-                        typeGenderDescription = "Hombre";
-                        break;
-                    case (int)TypeGenderId.Female:
-                        typeGenderDescription = "Mujer";
-                        break;
-                    case (int)TypeGenderId.Other:
-                        typeGenderDescription = "Otro";
-                        break;
-                    default:
-                        typeGenderDescription = "Desconocido";
-                        break;
-                }
-            }
-            @typeGenderDescription
-        </dd>
-    </dl>
-</div>
-<div>
-    <a href="/Users/Edit/@usuario.Id" style="text-decoration:none" class="text-white"><button type="button" class="btn btn-primary">Editar</button></a>
-    <a href="/Articles/Index" style="text-decoration:none" class="text-blue"><button type="button" class="btn btn-secondary ml-4">Volver</button></a>
-    
-</div> *@
