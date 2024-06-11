@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "title": "Cien años de soledad",
+    "author": "Gabriel García Márquez",
+    "genre": "Ficción",
+    "publicationDate": "1967-05-30",
+    "description": "Una obra maestra de la literatura mundial, ganadora de múltiples premios.",
+    "purchaseLink": "https://www.casadellibro.com/libro-cien-anos-de-soledad/9788420471839/1128535",
+    "ImageUrl": "https://imagessl9.casadellibro.com/a/l/s7/39/9788420471839.webp"
+  },
+  {
+    "id": 2,
+    "title": "Don Quijote de la Mancha",
+    "author": "Miguel de Cervantes",
+    "genre": "Ficción",
+    "publicationDate": "1605-01-16",
+    "description": "Una de las novelas más importantes de todos los tiempos.",
+    "purchaseLink": "https://www.casadellibro.com/libro-don-quijote-de-la-mancha-edicion-conmemorativa-iv-centenario/9788420412146/2593016",
+    "ImageUrl": "https://imagessl6.casadellibro.com/a/l/s7/46/9788420412146.webp"
+  },
+  {
+    "id": 3,
+    "title": "La sombra del viento",
+    "author": "Carlos Ruiz Zafón",
+    "genre": "Misterio",
+    "publicationDate": "2001-04-01",
+    "description": "Un misterio literario ambientado en la Barcelona de mediados del siglo XX.",
+    "purchaseLink": "https://www.casadellibro.com/libro-la-sombra-del-viento/9788408043645/825719",
+    "ImageUrl": "https://imagessl5.casadellibro.com/a/l/s7/45/9788408043645.webp"
+  },
+  {
+    "id": 4,
+    "title": "1984",
+    "author": "George Orwell",
+    "genre": "Distopía",
+    "publicationDate": "1949-06-08",
+    "description": "Una novela sobre un futuro distópico bajo un régimen totalitario.",
+    "purchaseLink": "https://www.casadellibro.com/libro-1984/9788499890944/2034881",
+    "ImageUrl": "https://imagessl4.casadellibro.com/a/l/s7/44/9788499890944.webp"
+  },
+  {
+    "id": 5,
+    "title": "El nombre de la rosa",
+    "author": "Umberto Eco",
+    "genre": "Misterio",
+    "publicationDate": "1980-09-01",
+    "description": "Un monje investiga una serie de misteriosos asesinatos en una abadía italiana.",
+    "purchaseLink": "https://www.casadellibro.com/libro-el-nombre-de-la-rosa/9788497592581/873981",
+    "ImageUrl": "https://imagessl1.casadellibro.com/a/l/s7/81/9788497592581.webp"
+  },
+  {
+    "id": 6,
+    "title": "Matar a un ruiseñor",
+    "author": "Harper Lee",
+    "genre": "Drama",
+    "publicationDate": "1960-07-11",
+    "description": "Una novela sobre la injusticia racial en el sur de Estados Unidos.",
+    "purchaseLink": "https://www.casadellibro.com/libro-matar-a-un-ruisenor/9788490701218/2571283",
+    "ImageUrl": "https://imagessl8.casadellibro.com/a/l/s7/18/9788490701218.webp"
+  },
+  {
+    "id": 7,
+    "title": "Orgullo y prejuicio",
+    "author": "Jane Austen",
+    "genre": "Romance",
+    "publicationDate": "1813-01-28",
+    "description": "Una historia de amor y malentendidos en la Inglaterra del siglo XIX.",
+    "purchaseLink": "https://www.casadellibro.com/libro-orgullo-y-prejuicio/9788491056799/15996101",
+    "ImageUrl": "https://imagessl9.casadellibro.com/a/l/s7/99/9788491056799.webp"
+  },
+  {
+    "id": 8,
+    "title": "El gran Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "genre": "Ficción",
+    "publicationDate": "1925-04-10",
+    "description": "Una crítica a la sociedad americana de los años 20.",
+    "purchaseLink": "https://www.casadellibro.com/libro-el-gran-gatsby/9788411483001/13613006",
+    "ImageUrl": "https://imagessl1.casadellibro.com/a/l/s7/01/9788411483001.webp"
+  },
+  {
+    "id": 9,
+    "title": "El tiempo recobrado",
+    "author": "Marcel Proust",
+    "genre": "Ficción",
+    "publicationDate": "1913-11-14",
+    "description": "Una exploración de la memoria y el tiempo.",
+    "purchaseLink": "https://www.casadellibro.com/libro-el-tiempo-recobrado/9788499082394/1659620o",
+    "ImageUrl": "https://imagessl4.casadellibro.com/a/l/s7/94/9788499082394.webp"
+  },
+  {
+    "id": 10,
+    "title": "Ulises",
+    "author": "James Joyce",
+    "genre": "Ficción",
+    "publicationDate": "1922-02-02",
+    "description": "Una obra compleja y experimental que sigue un día en la vida de Leopold Bloom.",
+    "purchaseLink": "https://www.casadellibro.com/libro-ulises/9788426418418/1802704",
+    "ImageUrl": "https://imagessl8.casadellibro.com/a/l/s7/18/9788426418418.webp"
+  }
+]

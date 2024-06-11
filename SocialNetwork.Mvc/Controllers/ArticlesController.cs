@@ -193,7 +193,8 @@ namespace SocialNetwork.Mvc.Controllers
 
             socialNetworkDbContext.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { id = HttpContext.Session.GetObject<User>("UsuarioEnSession").Id });
+
         }
 
     }

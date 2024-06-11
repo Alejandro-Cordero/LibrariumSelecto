@@ -41,17 +41,24 @@
 
             @if (currentUser != null)
             {
-                <div class="mt-4">
-                    @if (hasRecommended)
-                    {
-                        <i class="fas fa-thumbs-up text-blue-500 like-icon" data-article-id="@Model.Article.Id" data-recommendation-id="@Model.Recommendations.FirstOrDefault(r => r.UserId == currentUser.Id)?.Id" data-recommended="true"></i>
-                    }
-                    else
-                    {
-                        <i class="far fa-thumbs-up text-gray-500 like-icon" data-article-id="@Model.Article.Id" data-recommended="false"></i>
-                    }
-                </div>
+                @if (hasRecommended)
+                {
+                    <form asp-controller="Recommendation" asp-action="Delete" method="post" class="mt-4">
+                        <input type="hidden" name="recommendationId" value="@Model.Recommendations.FirstOrDefault(r => r.UserId == currentUser.Id)?.Id" />
+                        <input type="hidden" name="articleId" value="@Model.Article.Id" />
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-thumbs-up"></i></button>
+                    </form>
+                }
+                else
+                {
+                    <form asp-controller="Recommendation" asp-action="Create" method="post" class="mt-4">
+                        <input type="hidden" name="articleId" value="@Model.Article.Id" />
+                        <button type="submit" class="btn btn-outline-primary"><i class="fas fa-thumbs-up"></i></button>
+                    </form>
+                }
             }
+
+
         </div>
 
         <div class="bg-white py-8 px-6 shadow rounded-lg sm:px-10 mt-6">

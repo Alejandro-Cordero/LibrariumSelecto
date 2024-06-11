@@ -2,38 +2,41 @@
 using SocialNetwork.Core.Models;
 using SocialNetwork.Data;
 using SocialNetwork.Mvc.Extensions;
+using System.Threading.Tasks;
 
 namespace SocialNetwork.Mvc.Controllers
 {
     public class RecommendationController : Controller
     {
         private readonly SocialNetworkDbContext _socialNetworkDbContext;
+
         public RecommendationController(SocialNetworkDbContext socialNetworkDbContext)
         {
             _socialNetworkDbContext = socialNetworkDbContext;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create(Recommendation model, int articleId)
+        [HttpPost("Recommendation/Create/{articleId}")]
+        public async Task<IActionResult> Create(int articleId)
         {
-            if (HttpContext.Session.GetObject<User>("UsuarioEnSession") != null)
+            var currentUser = HttpContext.Session.GetObject<User>("UsuarioEnSession");
+            if (currentUser != null)
             {
-                model.Id = 0;
-                model.Date = DateTime.Now;
-                model.UserId = HttpContext.Session.GetObject<User>("UsuarioEnSession").Id;
-                model.ArticleId = articleId;
+                var recommendation = new Recommendation
+                {
+                    Date = DateTime.Now,
+                    UserId = currentUser.Id,
+                    ArticleId = articleId
+                };
 
-                _socialNetworkDbContext.Recommendations.Add(model);
+                _socialNetworkDbContext.Recommendations.Add(recommendation);
                 await _socialNetworkDbContext.SaveChangesAsync();
-
-                return Json(new { success = true, recommendationId = model.Id });
             }
 
-            return Json(new { success = false });
+            return RedirectToAction("Details", "Articles", new { id = articleId });
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Delete(int recommendationId)
+        [HttpPost("Recommendation/Delete/{recommendationId}/{articleId}")]
+        public async Task<IActionResult> Delete(int recommendationId, int articleId)
         {
             var recommendation = _socialNetworkDbContext.Recommendations.Find(recommendationId);
 
@@ -41,11 +44,9 @@ namespace SocialNetwork.Mvc.Controllers
             {
                 _socialNetworkDbContext.Recommendations.Remove(recommendation);
                 await _socialNetworkDbContext.SaveChangesAsync();
-
-               return Json(new { success = true });
             }
 
-            return Json(new { success = false });
+            return RedirectToAction("Details", "Articles", new { id = articleId });
         }
     }
 }
