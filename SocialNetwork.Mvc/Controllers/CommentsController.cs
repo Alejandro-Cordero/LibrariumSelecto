@@ -12,13 +12,11 @@ namespace SocialNetwork.Mvc.Controllers
         {
             _socialNetworkDbContext = socialNetworkDbContext;
         }
-
         public IActionResult Index()
         {
             return View();
         }
 
-        [HttpPost]
         public async Task<IActionResult> Create(Commentary model, int id)
         {
             if (HttpContext.Session.GetObject<User>("UsuarioEnSession") != null)
@@ -30,11 +28,10 @@ namespace SocialNetwork.Mvc.Controllers
 
                 _socialNetworkDbContext.Commentaries.Add(model);
                 await _socialNetworkDbContext.SaveChangesAsync();
-
-                return Json(new { success = true });
+                return RedirectToAction("GetArticleDetails", "Articles", new { id = id });
             }
 
-            return Json(new { success = false, redirectUrl = Url.Action("Login", "Users") });
+            return RedirectToAction("Login", "Users");
         }
 
         public async Task<IActionResult> Edit(int id)
@@ -50,7 +47,7 @@ namespace SocialNetwork.Mvc.Controllers
                 return Forbid();
             }
 
-            return PartialView("_EditComment", commentary); // Vista parcial para edición
+            return View(commentary);
         }
 
         [HttpPost]
@@ -64,7 +61,7 @@ namespace SocialNetwork.Mvc.Controllers
 
             if (!ModelState.IsValid)
             {
-                return Json(new { success = false });
+                return View(model);
             }
 
             var commentary = await _socialNetworkDbContext.Commentaries.FindAsync(id);
@@ -86,7 +83,7 @@ namespace SocialNetwork.Mvc.Controllers
             _socialNetworkDbContext.Commentaries.Update(commentary);
             await _socialNetworkDbContext.SaveChangesAsync();
 
-            return Json(new { success = true });
+            return RedirectToAction("GetArticleDetails", "Articles", new { id = commentary.ArticleId });
         }
     }
 }

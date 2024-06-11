@@ -42,7 +42,7 @@ namespace SocialNetwork.Mvc.Controllers
                 _socialNetworkDbContext.Recommendations.Remove(recommendation);
                 await _socialNetworkDbContext.SaveChangesAsync();
 
-                return Json(new { success = true });
+               return Json(new { success = true });
             }
 
             return Json(new { success = false });

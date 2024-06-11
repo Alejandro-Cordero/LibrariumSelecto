@@ -1,7 +1,7 @@
 ﻿@model SocialNetwork.Data.Models.ViewModels.IndexViewModel
 
 @{
-    ViewData["Title"] = "Article List";
+    ViewData["Title"] = "Lista de Artículos";
     Layout = "~/Views/Shared/_Layout.cshtml";
     string currentAction = ViewContext.RouteData.Values["action"]?.ToString();
     string actionName = string.IsNullOrEmpty(currentAction) ? "" : currentAction;
